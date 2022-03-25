@@ -1,13 +1,11 @@
 import strawberry
 from . import User
 
-@strawberry.type
-class LoginSuccess:
-    user: User
+class AuthType:
+    @strawberry.type
+    class LoginSuccess:
+        user: User
 
-@strawberry.type
-class LoginError:
-    message: str
-
-
-LoginResult = strawberry.union("LoginResult", (LoginSuccess, LoginError))
+    @strawberry.type
+    class LoginError:
+        message: str

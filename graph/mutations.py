@@ -1,15 +1,15 @@
 import strawberry
-from .type import LoginSuccess, LoginError, LoginResult, User
+from .type import AuthType, User, Status
 
 @strawberry.type
 class Mutation:
+    @strawberry.mutation
+    def signup(self, email: str, password: str, username: str) -> Status:
+        return Status(status="ok", message= "logged in")
 
-    @strawberry.field
-    def login(self, username: str, password: str) -> LoginResult:
+    @strawberry.mutation
+    def login(self, username: str, password: str) -> AuthType.LoginSuccess:
 
         # Your domain-specific authentication logic would go here
         user = ...
-
-        if user is None: return LoginError(message="Something went wrong")
-
-        return LoginSuccess(user=User(name="My Name", age=234))
+        return AuthType.LoginSuccess(user=User(name="My Name", age=234))

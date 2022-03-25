@@ -1,2 +1,3 @@
 from .user import User
-from .auth import LoginError, LoginSuccess, LoginResult
+from .auth import AuthType
+from .status import Status
