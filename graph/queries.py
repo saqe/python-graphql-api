@@ -6,7 +6,7 @@ from typing import List
 class Query:
     @strawberry.field
     def get_user(self) -> User:
-        return User(name="Patrick")
+        return User(name="Patrick", age=None)
 
     @strawberry.field
     def users(self) -> List[User]:

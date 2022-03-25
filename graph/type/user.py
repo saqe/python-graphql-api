@@ -1,6 +1,7 @@
 import strawberry
+from typing import Optional
 
 @strawberry.type
 class User:
     name: str
-    age: int
+    age: Optional[int]
