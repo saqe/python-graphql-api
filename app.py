@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from strawberry.asgi import GraphQL
 from strawberry import Schema
-from graph import Query, Mutation
+from graphql_schema import Query, Mutation
 
 schema = Schema(query=Query, mutation=Mutation)
 

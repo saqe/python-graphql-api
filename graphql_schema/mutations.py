@@ -9,7 +9,6 @@ class Mutation:
 
     @strawberry.mutation
     def login(self, username: str, password: str) -> AuthType.LoginSuccess:
+        raise AttributeError("Can't find user")
 
-        # Your domain-specific authentication logic would go here
-        user = ...
         return AuthType.LoginSuccess(user=User(name="My Name", age=234))
