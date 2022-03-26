@@ -5,7 +5,8 @@ from typing import Optional
 @strawberry.type
 class User:
     name: str
-    age: Optional[int]
+    email: str
+    date_of_birth: Optional[date]
 
     # Virtually resolved field.
     @strawberry.field
