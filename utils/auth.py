@@ -7,15 +7,15 @@ SECRET_KEY = getenv('SECRET_KEY')
 ALGORITHM = "HS256"
 
 class Auth:
-    _pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    __pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     @staticmethod
-    def hash_plain_password(password):
-        Auth._pwd_context.hash(password)
+    def hash_plain_password(password) -> str:
+        return Auth.__pwd_context.hash(password)
 
     @staticmethod
-    def verify_password(plain_password, hashed_password):
-        Auth._pwd_context.verify(plain_password, hashed_password)
+    def verify_password(plain_password, hashed_password) -> str:
+        return Auth.__pwd_context.verify(plain_password, hashed_password)
 
     @staticmethod
     def authenticate_user(email: str, password: str):
@@ -38,4 +38,4 @@ class Auth:
 
     @staticmethod
     def verify_jwt_access_token(token):
-        jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
