@@ -6,7 +6,9 @@ cffi==1.15.0
 click==8.0.4
 fastapi==0.75.0
 graphql-core==3.2.0
+greenlet==1.1.2
 h11==0.13.0
+httptools==0.4.0
 idna==3.3
 Mako==1.2.0
 MarkupSafe==2.1.1
@@ -16,10 +18,15 @@ pydantic==1.9.0
 Pygments==2.11.2
 PyJWT==2.3.0
 python-dateutil==2.8.2
+python-dotenv==0.20.0
 python-multipart==0.0.5
+PyYAML==6.0
 six==1.16.0
 sniffio==1.2.0
-starlette==0.16.0
+starlette==0.17.1
 strawberry-graphql==0.103.9
 typing_extensions==4.1.1
 uvicorn==0.17.6
+uvloop==0.16.0
+watchgod==0.8.1
+websockets==10.2
