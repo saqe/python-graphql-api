@@ -34,6 +34,7 @@ class Mutation:
 
         user = db.get(email)
         if Auth.verify_password(password, user.hashed_password):
-            return AuthType.LoginSuccess(user=user)
+            token = Auth.get_access_token(user)
+            return AuthType.LoginSuccess(user=user, access_token=token)
         else:
             return Exception('Password incorrect')

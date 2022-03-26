@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import jwt
 from passlib.context import CryptContext
 from os import getenv
+from models import UserModel
 
 SECRET_KEY = getenv('SECRET_KEY')
 ALGORITHM = "HS256"
@@ -29,12 +30,13 @@ class Auth:
         pass
 
     @staticmethod
-    def get_access_token(user):
-        to_encode = {'user_id': user.id}
-        expire = datetime.utcnow() + timedelta(minutes=15)
-        to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-        return encoded_jwt
+    def get_access_token(user: UserModel):
+        payload = {
+            'name': user.name,
+            'active': user.is_active,
+            'exp': datetime.utcnow() + timedelta(minutes=15)
+        }
+        return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
     @staticmethod
     def verify_jwt_access_token(token):
