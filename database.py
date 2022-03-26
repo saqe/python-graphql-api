@@ -1,13 +1,13 @@
-from graphql_schema.type import User
+from models import UserModel
 
 class FakeDatabase:
     def __init__(self):
         self.__data = []
 
-    def get(self, email: str) -> User:
+    def get(self, email: str) -> UserModel:
         return next(self.__query(email))
 
-    def insert(self, user: User):
+    def insert(self, user: UserModel):
         self.__data.append(user)
         return user
 

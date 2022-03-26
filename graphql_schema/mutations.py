@@ -16,7 +16,7 @@ class Mutation:
 
         # Convert password into hash.
         password = Auth.hash_plain_password(password)
-        print(password)
+
         user = UserModel(
             name=name,
             email=email,
@@ -29,7 +29,11 @@ class Mutation:
         return Status(status="ok", message= "User registered, please signup now")
 
     @strawberry.mutation
-    def login(self, username: str, password: str) -> AuthType.LoginSuccess:
-        raise AttributeError("Can't find user")
+    def login(self, email: str, password: str) -> AuthType.LoginSuccess:
+        if not db.is_exist(email): return Exception("Email not found")
 
-        return AuthType.LoginSuccess(user=User(name="My Name", age=234))
+        user = db.get(email)
+        if Auth.verify_password(password, user.hashed_password):
+            return AuthType.LoginSuccess(user=user)
+        else:
+            return Exception('Password incorrect')
