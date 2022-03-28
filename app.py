@@ -3,6 +3,7 @@ from strawberry.asgi import GraphQL
 from strawberry import Schema
 from graphql_schema import Query, Mutation
 from starlette.responses import RedirectResponse
+from fastapi.middleware.gzip import GZipMiddleware
 
 schema = Schema(query=Query, mutation=Mutation)
 
@@ -17,3 +18,4 @@ async def redirect():
 
 app.add_route("/graphql", graphql_app)
 app.add_websocket_route("/graphql", graphql_app)
+app.add_middleware(GZipMiddleware, minimum_size=1000)
